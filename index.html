@@ -20,7 +20,7 @@
 			/*var datas = {
 				'0':['北京','广东','广西'],
 				'0_0':['北京'],
-				'0_0_1':["东城区", "西城区", "崇文区", "宣武区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "密云县", "延庆县", "延庆镇"],
+				'0_0_0':["东城区", "西城区", "崇文区", "宣武区", "朝阳区", "丰台区", "石景山区", "海淀区", "门头沟区", "房山区", "通州区", "顺义区", "昌平区", "大兴区", "怀柔区", "平谷区", "密云县", "延庆县", "延庆镇"],
 				'0_1':["广州市", "深圳市", "清远市", "韶关市", "河源市", "梅州市", "潮州市", "汕头市", "揭阳市", "汕尾市", "惠州市", "东莞市", "珠海市", "中山市", "江门市", "佛山市", "肇庆市", "云浮市", "阳江市", "茂名市", "湛江市"],
 				"0_1_0":["越秀区", "荔湾区", "海珠区", "天河区", "白云区", "黄埔区", "番禺区", "花都区", "南沙区", "萝岗区", "增城市", "从化市"],
 				"0_1_1":["福田区", "罗湖区", "南山区", "宝安区", "龙岗区", "盐田区"],
@@ -42,15 +42,41 @@
 				"0_1_19":["茂南区", "茂港区", "化州市", "信宜市", "高州市", "电白县", "水东镇"],
 			}*/
 			var datas, s;
-			$.post('../get/citys.json',  function(data, textStatus, xhr) {
+			/*$.post('http://192.168.19.129/mall/Admin/Catalog/getAllCatalogsFront',  function(data, textStatus, xhr) {
 				console.log(data);
 				datas = data;
 				s = new selector({
 					//selecotor:['#s1', '#s2', '#s3']
-					selecotor:['s1', 's2', 's3'],
+					selecotor:['s1', 's2'],
 					data:datas
 				})
+			});*/
+			$.ajax({
+				url: 'http://192.168.19.129/mall/Admin/Catalog/getAllCatalogsFront',
+				type: 'post',
+				dataType: 'json',
+				//data: ,
+				success:function(data){
+					console.log(data);
+					datas = data;
+					s = new selector({
+						//selecotor:['#s1', '#s2', '#s3']
+						selecotor:['s1', 's2'],
+						data:datas
+					})
+					//s.setValue([1,2]);
+				}
+			})
+			.done(function() {
+				console.log("success");
+			})
+			.fail(function(e) {
+				console.log(e);
+			})
+			.always(function() {
+				console.log("complete");
 			});
+
 
 
 			/*下面仅作为示例*/
