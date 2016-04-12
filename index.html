@@ -62,9 +62,10 @@
 					s = new selector({
 						//selecotor:['#s1', '#s2', '#s3']
 						selecotor:['s1', 's2'],
-						data:datas
+						data:datas,
+						default: ['全部', '全部']
 					})
-					//s.setValue([1,2]);
+					s.setValue([0,1], true);
 				}
 			})
 			.done(function() {
